@@ -1,5 +1,7 @@
 # tor-spawn
 
+## usage
+
 ```javascript
 import spawnTor from 'tor-spawn'
 import { commander as controlport, commands } from 'tor-commander'
