@@ -1,25 +1,18 @@
 # tor-spawn
 
 ```javascript
-import tor from 'tor-spawn'
+import spawnTor from 'tor-spawn'
 import { commander as controlport, commands } from 'tor-commander'
 
-tor({
-  path: `tor`,
-  configuration: {
-    SocketPort: 9050,
-    ControlPort: 9055,
-    HashedControlPassword: tor.hashPassword(`hello`)
-  }
-})
-.then(instance => {
-  controlport(instance.controlPort)
-  .write(commands.AUTHENTICATE(`hello`))
+spawnTor()
+.then(tor => {
+  controlport(tor.options.ControlPort)
+  .write(commands.AUTHENTICATE())
   .write(commands.SIGNAL.HEARTBEAT)
   .write(commands.QUIT)
   .execute()
-  .then(success)
-  .catch(error)
+  .then(console.log)
+  .catch(console.error)
 })
-.catch(error)
+.catch(error => console.error)
 ```
