@@ -1,9 +1,6 @@
+const mergeObjects = arrayOfObjects =>
+  arrayOfObjects.reduce((acc, obj) => ({ ...acc, ...obj }), {})
+
 export default ({ getPorts }, tor) =>
   getPorts([ `SocksPort`, `ControlPort` ])
-  .then(ports => ({
-    ...tor,
-    options: {
-      ...ports.reduce((acc, port) => ({ ...acc, ...port }), {}),
-      ...tor.options
-    }
-  }))
+  .then(ports => ({ ...tor, options: { ...mergeObjects, ...tor.options } }))
