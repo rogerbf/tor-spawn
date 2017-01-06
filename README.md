@@ -9,7 +9,7 @@ import { commander as controlport, commands } from 'tor-commander'
 spawnTor()
 .then(tor => {
   controlport(tor.options.ControlPort)
-  .write(commands.AUTHENTICATE())
+  .write(commands.AUTHENTICATE(tor.controlPassword))
   .write(commands.SIGNAL.HEARTBEAT)
   .write(commands.QUIT)
   .execute()
