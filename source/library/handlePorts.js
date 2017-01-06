@@ -3,4 +3,6 @@ const mergeObjects = arrayOfObjects =>
 
 export default ({ getPorts }, tor) =>
   getPorts([ `SocksPort`, `ControlPort` ])
-  .then(ports => ({ ...tor, options: { ...mergeObjects, ...tor.options } }))
+  .then(ports => ({
+    ...tor, options: { ...mergeObjects(ports), ...tor.options }
+  }))
