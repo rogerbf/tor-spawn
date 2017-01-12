@@ -1,14 +1,14 @@
-import { randomBytes } from 'crypto'
+// import { randomBytes } from 'crypto'
+//
+// const randomPassword = () =>
+//   new Promise((resolve, reject) => {
+//     randomBytes(8, (error, bytes) => {
+//       error && reject(error)
+//       resolve(bytes.toString(`hex`))
+//     })
+//   })
 
-const randomPassword = () =>
-  new Promise((resolve, reject) => {
-    randomBytes(8, (error, bytes) => {
-      error && reject(error)
-      resolve(bytes.toString(`hex`))
-    })
-  })
-
-export default ({ hashPassword }, tor) => (
+export default ({ hashPassword, randomHexString }, tor) => (
   tor.options.HashedControlPassword ? tor : (
     tor.controlPassword
     ? (
@@ -18,7 +18,7 @@ export default ({ hashPassword }, tor) => (
       }))
     )
     : (
-      randomPassword()
+      randomHexString(8)
       .then(random =>
         hashPassword(random)
         .then(HashedControlPassword => ({

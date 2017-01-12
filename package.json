@@ -44,6 +44,7 @@
   "dependencies": {
     "args-manager": "^2.0.1",
     "get-multiple-ports": "^1.0.0",
+    "random-hex-string": "^1.0.0",
     "tor-hashpassword": "^0.1.0",
     "tor-log": "^1.0.0",
     "tor-torrc-options": "^0.0.2"

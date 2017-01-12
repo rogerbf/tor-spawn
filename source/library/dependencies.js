@@ -3,6 +3,7 @@ import getPorts from 'get-multiple-ports'
 import argsManager from 'args-manager'
 import logManager from 'tor-log'
 import hashPassword from 'tor-hashpassword'
+import randomHexString from 'random-hex-string'
 import getValidOptions from 'tor-torrc-options'
 
 export default {
@@ -11,5 +12,6 @@ export default {
   argsManager,
   logManager,
   hashPassword,
+  randomHexString,
   getValidOptions
 }
