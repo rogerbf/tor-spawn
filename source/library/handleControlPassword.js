@@ -9,7 +9,7 @@
 //   })
 
 export default ({ hashPassword, randomHexString }, tor) => (
-  tor.options.HashedControlPassword ? tor : (
+  tor.options.HashedControlPassword ? Promise.resolve(tor) : (
     tor.controlPassword
     ? (
       hashPassword(tor.controlPassword)
