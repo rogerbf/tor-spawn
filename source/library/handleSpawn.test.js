@@ -3,7 +3,7 @@ import handleSpawn from './handleSpawn'
 const createDependencies = (resolves = true) => {
   const instance = {
     on: jest.fn(),
-    once: resolves ? jest.fn() : jest.fn((eventType, fn) => fn(`general error`)),
+    once: resolves ? jest.fn() : jest.fn((eventName, fn) => fn(`general error`)),
     removeListener: jest.fn(),
     kill: jest.fn()
   }
@@ -39,4 +39,11 @@ test(`rejects`, () => {
   handleSpawn(createDependencies(false), tor)
   .then(instance => expect(instance).toBeUndefined())
   .catch(error => expect(error).toEqual(`general error`))
+})
+
+test(`exits with process`, () => {
+  Object.assign(process, { on: jest.fn((eventName, fn) => fn()) })
+  handleSpawn(createDependencies(), tor)
+  .then(tor => expect(tor).toBeDefined())
+  .catch(error => expect(error).toBeUndefined())
 })
