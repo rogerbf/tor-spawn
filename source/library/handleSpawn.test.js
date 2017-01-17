@@ -30,6 +30,7 @@ test(`handleSpawn`, () => {
 })
 
 test(`resolves`, () => {
+  Object.assign(process, { nextTick: jest.fn(fn => fn()) })
   handleSpawn(createDependencies(), tor)
   .then(tor => expect(tor).toBeDefined())
   .catch(error => expect(error).toBeUndefined())
