@@ -1,20 +1,23 @@
 # tor-spawn
 
+Spawn a instance of tor.
+
 ## usage
 
 ```javascript
-import spawnTor from 'tor-spawn'
+import Tor from 'tor-spawn'
 import { commander as controlport, commands } from 'tor-commander'
 
-spawnTor()
+Tor()
 .then(tor => {
+  tor.on(`notice`, console.log)
   controlport(tor.options.ControlPort)
   .write(commands.AUTHENTICATE(tor.controlPassword))
   .write(commands.SIGNAL.HEARTBEAT)
   .write(commands.QUIT)
   .execute()
-  .then(console.log)
-  .catch(console.error)
+  .then(success)
+  .catch(error)
 })
-.catch(error => console.error)
+.catch(error => console.error(error))
 ```
