@@ -21,3 +21,20 @@ Tor()
 })
 .catch(error => console.error(error))
 ```
+
+## api
+
+### `Tor([configuration])`
+
+`configuration` is an object which defaults to:
+
+```javascript
+{
+  path: `tor`,
+  options: {}
+}
+```
+
+`options` contains tor configuration data which are passed on as arguments when spawning tor.
+
+By default, SocksPort and ControlPort are set to any two available ports.
