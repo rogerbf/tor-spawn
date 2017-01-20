@@ -1,6 +1,6 @@
 # tor-spawn
 
-Spawn a instance of tor.
+Spawn a instance of tor. Returns a promise that on successful execution resolves with a instance of tor.
 
 ## usage
 
@@ -37,4 +37,4 @@ Tor()
 
 `options` contains tor configuration data which are passed on as arguments when spawning tor.
 
-By default, SocksPort and ControlPort are set to any two available ports.
+By default, SocksPort and ControlPort are set to any two available ports and are available on the returned instance object under the `options` key.
